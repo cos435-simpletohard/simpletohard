@@ -21,11 +21,13 @@ This section should contain instructions to set a pip environment up once we fil
 ## Repository structure
 The code for each `(environment, input_type)` pair is provided in the `src/` directory in its own file. 
 We wrote each such setting in a single large file, though these files themselves should be quite readable.
-The evaluation scripts have been branched off into their own files.
+There is also an evaluation script for easy evaluation of point maze checkpoints on other mazes.
 
-We provide selected checkpoints of successfully learned policies under `data/checkpoints/`, and corresponding videos in `data/videos/`. Unfortunately, we cannot release the entire set of checkpoints and videos over training due to size considerations. 
+We provide selected checkpoints of learned policies under `data/checkpoints/`, and corresponding videos in `data/videos/`. 
+Unfortunately, we cannot release the entire set of checkpoints and videos over training due to size considerations. 
+We also had to remove the checkpoint of the replay buffer from each checkpoint directory since it took up over a gigabyte of storage.
 
-Within `run_scripts/`, we provide some bash scripts that should make running training and evaluation easier. Please refer to them for a examples of how to call the python files.
+Within `scripts/`, we provide some bash scripts that should make running training and evaluation easier. Please refer to them for a examples of how to call the python files.
 
 ## TL; DR 
 Goal-conditioned policies don't fit a reward; they fit environment dynamics. 
@@ -41,9 +43,10 @@ We find that policies learned on one maze do not transfer to other mazes: there 
 ## TODO checklist
 
 - [X] Write a skeleton of the README.
-- [ ] Copy code over from our files.
-- [ ] Clean the code to remove unused variables, etc., and add comments.
+- [X] Copy code over from our files.
+- [X] Clean the code to remove unused variables, etc., and add comments.
 - [ ] Add a `requirements.txt` file.
 - [ ] Write the report and upload it.
+- [ ] Make sure that everything runs; do one quick dryrun to confirm.
 - [ ] Make the respository public.
 - [ ] Remove this checklist.
