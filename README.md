@@ -49,4 +49,4 @@ We find that policies learned on one maze do not transfer to other mazes: there 
 - [ ] Write the report and upload it.
 - [ ] Make sure that everything runs; do one quick dryrun to confirm.
 - [ ] Make the respository public.
-- [ ] Remove this checklist.
+- [ ] Remove this checklist and upload the report to our Ed post.
