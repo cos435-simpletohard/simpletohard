@@ -1,7 +1,7 @@
-import random
 import os
 import json
 import PIL
+import PIL.Image
 import argparse
 import wandb
 
@@ -25,6 +25,10 @@ from transformers import CLIPProcessor, CLIPModel
 
 import logging
 logging.getLogger('numpy').setLevel(logging.WARNING)
+
+# Note: the general layout of this file (the structure of the training loop, the architecture of the networks, and 
+# the replay buffer implementation) is loosely inspired by the homework assignments.
+# However, the implementation has evolved into something that looks quite different.
 
 ## Env variables
 # For MuJoCo mujoco-3.3.0?

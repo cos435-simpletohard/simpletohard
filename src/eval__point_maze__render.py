@@ -1,7 +1,7 @@
-import random
 import os
 import json
 import PIL
+import PIL.Image
 import argparse
 import wandb
 

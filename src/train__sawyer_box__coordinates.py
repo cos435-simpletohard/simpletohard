@@ -2,6 +2,7 @@ import metaworld
 import random
 import os
 import PIL
+import PIL.Image
 import argparse
 import wandb
 
@@ -18,7 +19,10 @@ from torch.utils.data import Dataset, DataLoader
 import mujoco
 import cv2
 from shutil import rmtree
-# import concurrent.futures
+
+# Note: the general layout of this file (the structure of the training loop, the architecture of the networks, and 
+# the replay buffer implementation) is loosely inspired by the homework assignments.
+# However, the implementation has evolved into something that looks quite different.
 
 ## Env variables
 os.environ["MUJOCO_GL"] = "egl"

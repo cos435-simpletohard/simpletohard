@@ -16,7 +16,12 @@ We are grateful to the staff of COS 435 (Ben and the TAs) for their help.
 
 ## Environment
 
-This section should contain instructions to set a pip environment up once we fill out `requirements.txt`.
+You might want to create a new conda environment with Python 3.10 before running this code.
+Having done so, you can run
+```
+pip install -r requirements.txt
+```
+to install most of the requirements. You will have to install the Metaworld package from its [github repository](https://github.com/Farama-Foundation/Metaworld), though (there are instructions in the linked repository).
 
 ## Repository structure
 The code for each `(environment, input_type)` pair is provided in the `src/` directory in its own file. 
@@ -45,8 +50,7 @@ We find that policies learned on one maze do not transfer to other mazes: there 
 - [X] Write a skeleton of the README.
 - [X] Copy code over from our files.
 - [X] Clean the code to remove unused variables, etc., and add comments.
-- [ ] Add a `requirements.txt` file.
-- [ ] Write the report and upload it.
-- [ ] Make sure that everything runs; do one quick dryrun to confirm.
-- [ ] Make the respository public.
-- [ ] Remove this checklist and upload the report to our Ed post.
+- [X] Add a `requirements.txt` file.
+- [X] Make sure that everything runs; do one quick dryrun to confirm.
+- [X] Make the respository public.
+- [ ] Remove this checklist and upload the report to our Ed post + submit to gradescope.
