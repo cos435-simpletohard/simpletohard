@@ -22,6 +22,45 @@ Having done so, you can run
 pip install -r requirements.txt
 ```
 to install most of the requirements. You will have to install the Metaworld package from its [github repository](https://github.com/Farama-Foundation/Metaworld), though (there are instructions in the linked repository).
+Finally, you might have to apply the patch below to get training to work.
+
+### A hacky patch
+In the point maze environments, we pass in floating-point coordinates while resetting the environment.
+We found that this was needed, as otherwise the point and goal would be rendered on top of each other in the desired final state (and this would mess with the CLIP embeddings). You will therefore see something like
+```
+goal_kwargs = {
+    "goal_cell": np.array([7, 9.7], dtype=float),
+    "reset_cell": np.array([6.9, 10.2], dtype=float),
+}
+```
+in our code.
+Point Maze itself does not care that the coordinates be integers (it renders the items anyway), but one of its subclasses has an annoying check that the coordinates be integers. If you run our code out-of-the box, you might get an error in `.../gymnasium-robotics/envs/maze/maze_v4.py:318`. You can fix this error by commenting out these two pairs of lines in that file (lines 317-320 and 334-339)
+```
+                ...
+                # assert (
+                #     self.maze.maze_map[options["goal_cell"][0]][options["goal_cell"][1]]
+                #     != 1
+                # ), f"Goal can't be placed in a wall cell, {options['goal_cell']}"
+                ...
+                # assert (
+                #     self.maze.maze_map[options["reset_cell"][0]][
+                #         options["reset_cell"][1]
+                #     ]
+                #     != 1
+                # ), f"Reset can't be placed in a wall cell, {options['reset_cell']}"
+                ...
+```
+Optionally, we found that not adding noise to the initial positions led to better training due to consistent start states (lines 328 and 349 of the same file):
+```
+        ...
+            # self.goal = self.add_xy_position_noise(goal)
+            self.goal = goal
+        ...
+        # self.reset_pos = self.add_xy_position_noise(reset_pos)
+        self.reset_pos = reset_pos
+        ...
+```
+It would be preferable to subclass `Maze`, but since `PointMazeEnv` derives from it, that becomes a bit messy. Therefore, we chose this simpler, if hacky, fix.
 
 ## Repository structure
 The code for each `(environment, input_type)` pair is provided in the `src/` directory in its own file. 
