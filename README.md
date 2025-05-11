@@ -34,7 +34,7 @@ goal_kwargs = {
 }
 ```
 in our code.
-Point Maze itself does not care that the coordinates be integers (it renders the items anyway), but one of its subclasses has an annoying check that the coordinates be integers. If you run our code out-of-the box, you might get an error in `.../gymnasium-robotics/envs/maze/maze_v4.py:318`. You can fix this error by commenting out these two pairs of lines in that file (lines 317-320 and 334-339)
+Point Maze itself does not care that the coordinates be integers (it renders the items anyway), but one of its subclasses has an annoying check that the coordinates be integers. If you run our code out-of-the box, you might get an error in `.../gymnasium-robotics/envs/maze/maze_v4.py:318`. You can fix this error by commenting out these two sets of lines in that file (lines 317-320 and 334-339)
 ```
                 ...
                 # assert (
